@@ -10,7 +10,6 @@ const Navbar = () => {
                     <ul>
                         <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/menu">Menukaart</NavLink></li>
                         <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/blogs">Blogs</NavLink></li>
-                        <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/">Contact</NavLink></li>
                         <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/make-reservation">Reserveer</NavLink></li>
                         <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/login">Login</NavLink></li>
                     </ul>
