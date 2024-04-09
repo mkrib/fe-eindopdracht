@@ -71,13 +71,16 @@
 
 .btn-all-blogs {
     background-color: var(--white);
-    color: var(--deepbeige);
     padding: 10px 30px;
     margin: 30px 0;
     border: 1px solid var(--deepbeige);
     box-shadow: 1px 2px var(--taupegrey);
     border-radius: 5px;
     font-size: 18px;
+}
+
+.btn-all-blogs a {
+    color: var(--deepbeige);
 }
 
 /* Section review slider */
