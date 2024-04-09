@@ -8,10 +8,10 @@ const Navbar = () => {
                 <div className="nav-inner-wrapper">
                     <h1 className="logo"><NavLink to="/">The restaurant</NavLink></h1>
                     <ul>
-                        <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/">Menukaart</NavLink></li>
-                        <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/">Blogs</NavLink></li>
-                        <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/">Reserveer</NavLink></li>
-                        <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/">Login</NavLink></li>
+                        <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/menu">Menukaart</NavLink></li>
+                        <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/blogs">Blogs</NavLink></li>
+                        <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/make-reservation">Reserveer</NavLink></li>
+                        <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/login">Login</NavLink></li>
                     </ul>
                 </div>
             </nav>

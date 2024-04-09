@@ -5,6 +5,7 @@ import blogImage2 from '../../assets/blog-image-2.jpg';
 import blogImage3 from '../../assets/blog-image-3-chef.jpg';
 import Review from "../../components/review/Review.jsx";
 import BlogPreview from "../../components/blogs/BlogPreview.jsx";
+import {Link} from "react-router-dom";
 
 const Home = () => {
     return (
@@ -56,7 +57,7 @@ const Home = () => {
                             />
                         </div>
 
-                        <button className="btn-all-blogs" type="button">Alle blogs bekijken</button>
+                        <button className="btn-all-blogs" type="button"><Link to="/blogs">Alle blogs bekijken</Link></button>
 
                     </div>
                 </section>
@@ -104,7 +105,7 @@ const Home = () => {
                     </div>
 
                     <div>
-                        <h4>Adres</h4>
+                        <h4>Contact</h4>
                         <p>Vogellaan 1</p>
                         <p>1234 AB Haarlem</p>
                         <p>023 - 123 45 67</p>
