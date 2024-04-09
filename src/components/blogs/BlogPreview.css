@@ -1,0 +1,27 @@
+.article-preview {
+    flex-basis: 400px;
+    padding: 30px;
+
+    position: relative;
+}
+
+.a-readmore {
+    position: absolute;
+    right: 24px;
+    color: var(--orangebrown);
+}
+
+.p-article-preview {
+    padding: 8px 0 20px 0;
+}
+
+.article-preview img {
+    width: 100%;
+    height: auto;
+}
+
+.article-preview h3 {
+    padding-top: 4px;
+    color: var(--deepbeige);
+    text-align: center;
+}
