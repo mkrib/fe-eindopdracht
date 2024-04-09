@@ -105,7 +105,7 @@ const Home = () => {
 
                     <div>
                         <h4>Adres</h4>
-                        <p>Eksterlaan 31</p>
+                        <p>Vogellaan 1</p>
                         <p>1234 AB Haarlem</p>
                         <p>023 - 123 45 67</p>
                     </div>
