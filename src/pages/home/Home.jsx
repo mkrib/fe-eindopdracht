@@ -108,6 +108,7 @@ const Home = () => {
                         <p>Vogellaan 1</p>
                         <p>1234 AB Haarlem</p>
                         <p>023 - 123 45 67</p>
+                        <p>contact@therestaurant.nl</p>
                     </div>
                 </div>
             </footer>
