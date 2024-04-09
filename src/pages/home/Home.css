@@ -1,0 +1,122 @@
+/* Section opening image */
+
+.img-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 1200px;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+/* Section about info */
+
+.text-about {
+    flex-basis: 1200px;
+
+    display: flex;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.text-about p {
+    flex-basis: 600px;
+    padding: 40px 10px;
+    font-weight: 300;
+    font-size: 1.3em;
+}
+
+.p-left {
+    margin-right: 80px;
+}
+
+/* Section blog previews */
+
+.section-blog-preview {
+    background-color: var(--lightbeige);
+}
+
+.articles-wrapper {
+    display: flex;
+}
+
+.article-preview {
+    flex-basis: 400px;
+    padding: 30px;
+
+    position: relative;
+}
+
+.a-readmore {
+    position: absolute;
+    right: 24px;
+    color: var(--orangebrown);
+}
+
+.p-article-preview {
+    padding: 20px 0;
+}
+
+.article-preview img {
+    width: 100%;
+    height: auto;
+}
+
+.article-preview h3 {
+    text-align: center;
+}
+
+.btn-all-blogs {
+    background-color: var(--white);
+    color: var(--deepbeige);
+    padding: 10px 30px;
+    margin: 30px 0;
+    border: 1px solid var(--deepbeige);
+    box-shadow: 1px 2px var(--taupegrey);
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+/* Section review slider */
+
+.review-slider {
+    display: flex;
+    flex-basis: 1200px;
+    justify-content: space-between;
+    margin: 0 20px;
+
+    padding: 30px 0 40px 0;
+}
+
+/* Section footer */
+
+footer {
+    background-color: var(--mediumbeige);
+}
+
+.footer-inner-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 1200px;
+    padding: 40px 0;
+}
+
+footer h4 {
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+footer div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*border: 1px solid orange;*/
+    flex-basis: 400px;
+}
+
+.footer-socials {
+    justify-content: flex-end;
+}

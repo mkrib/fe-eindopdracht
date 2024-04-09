@@ -7,6 +7,7 @@
     --mediumbeige: #E7D3AE;
     --lightbeige: #FAF2E3;
     --darkbrown: #3f3010;
+    --orangebrown: #d78503;
     --taupegrey: #A1998A;
     --white: #ffffff;
     --offwhite: #FBF4E6;
@@ -48,9 +49,14 @@ h6 {
 p {
     font-size: 1rem;
     line-height: 1.5;
+    font-weight: 300;
 }
 
-a, a:visited {
+a, a:link, a:visited {
     text-decoration: none;
+    cursor: pointer;
+}
+
+button {
     cursor: pointer;
 }
