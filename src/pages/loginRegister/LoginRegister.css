@@ -1,0 +1,43 @@
+.form-login, .form-register {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.form-login label, .form-register label {
+    margin-top: 14px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-login input, .form-register input {
+    border-radius: 5px;
+    border: 1px solid var(--darkbrown);
+    padding: 10px;
+}
+
+.inner-container h3 {
+    margin: 20px 0;
+}
+
+.btn-login {
+    background-color: var(--mediumbeige);
+    color: var(--white);
+    padding: 10px 30px;
+    margin: 20px 0;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.btn-register {
+    background-color: var(--taupegrey);
+    color: var(--offwhite);
+    padding: 10px 30px;
+    margin: 20px 0;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+}

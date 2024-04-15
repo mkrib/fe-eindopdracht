@@ -1,0 +1,17 @@
+.form-make-reservation {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.form-make-reservation label {
+    margin-top: 14px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-make-reservation input, .form-make-reservation textarea {
+    border-radius: 5px;
+    border: 1px solid var(--darkbrown);
+    padding: 10px;
+}
