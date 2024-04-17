@@ -8,6 +8,7 @@ import LoginRegister from "./pages/loginRegister/LoginRegister.jsx";
 import Menu from "./pages/menu/Menu.jsx";
 import MakeReservation from "./pages/makeReservation/MakeReservation.jsx";
 import NotFound from "./pages/notFound/NotFound.jsx";
+import Profile from "./pages/profile/Profile.jsx";
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
                 <Route path="/blog/:id" element={<BlogDetailpage/>}/>
                 <Route path="/make-reservation" element={<MakeReservation/>}/>
                 <Route path="/login" element={<LoginRegister/>}/>
-                <Route path="/profile/:id" element="/"/>
+                <Route path="/profile" element={<Profile/>}/>
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
         </>

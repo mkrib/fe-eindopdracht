@@ -60,3 +60,7 @@ a, a:link, a:visited {
 button {
     cursor: pointer;
 }
+
+li {
+    list-style: none;
+}
