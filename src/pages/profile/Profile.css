@@ -46,12 +46,17 @@
     border-radius: 5px;
     padding: 20px;
     margin: 20px 10px 10px 10px;
+    overflow-y: scroll;
+}
+
+.display-profile-content li {
+    margin: 10px 0;
 }
 
 .form-add-blog {
     display: flex;
     flex-direction: column;
-    min-width: 400px;
+    width: 80%;
 }
 
 .form-add-blog label {
@@ -64,6 +69,14 @@
     border-radius: 5px;
     border: 1px solid var(--darkbrown);
     padding: 10px;
+}
+
+.textarea-content {
+    flex-basis: 400px;
+}
+
+.textarea-previewtext {
+    flex-basis: 100px;
 }
 
 

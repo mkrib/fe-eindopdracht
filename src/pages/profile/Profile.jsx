@@ -19,10 +19,17 @@ const Profile = () => {
                 <div className="display-profile-content">
                     <ul>
                         <li>
-                          <p>Datum en tijd</p>
-                          <p>Aantal personen</p>
-                          <p>Naam gast</p>
-                          <p>Speciale verzoeken: </p>
+                            <p>Datum en tijd</p>
+                            <p>Aantal personen</p>
+                            <p>Naam gast</p>
+                            <p>Speciale verzoeken: </p>
+                        </li>
+
+                        <li>
+                            <p>Datum en tijd</p>
+                            <p>Aantal personen</p>
+                            <p>Naam gast</p>
+                            <p>Speciale verzoeken: </p>
                         </li>
                     </ul>
                 </div>
@@ -47,10 +54,10 @@ const Profile = () => {
                     <form className="form-add-blog">
                         <label htmlFor="title">Titel</label>
                         <input type="text" id="title" name="title" required/>
-                        <label htmlFor="content">Inhoud</label>
-                        <textarea id="content" name="content" required></textarea>
+                        <label htmlFor="content">Content</label>
+                        <textarea className="textarea-content" id="content" name="content" required></textarea>
                         <label htmlFor="previewText">Tekst voorvertoning</label>
-                        <textarea id="previewText" name="previewText" required></textarea>
+                        <textarea className="textarea-previewtext" id="previewText" name="previewText" required></textarea>
                         <label htmlFor="image">Afbeelding</label>
                         <input type="file" id="image" name="image" required/>
                         <Button
