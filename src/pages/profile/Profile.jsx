@@ -1,8 +1,27 @@
 import {Link} from "react-router-dom";
 import './Profile.css';
 import Button from "../../components/buttons/Button.jsx";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const Profile = () => {
+    // const [reservations, setReservations] = useState([]);
+    const [error, setError] = useState(null);
+
+    async function fetchReservations() {
+        try {
+            const result = await axios.get('http://localhost:8080/reservations');
+            console.log(result);
+        } catch (error) {
+            console.error(error.message);
+            setError(error.message);
+        }
+    }
+
+    useEffect(() => {
+        fetchReservations();
+    }, []);
+
     return (
         <>
             <div className="profile-side-nav">
