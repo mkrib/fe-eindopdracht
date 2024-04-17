@@ -51,6 +51,8 @@ const Profile = () => {
                         <textarea id="content" name="content" required></textarea>
                         <label htmlFor="previewText">Tekst voorvertoning</label>
                         <textarea id="previewText" name="previewText" required></textarea>
+                        <label htmlFor="image">Afbeelding</label>
+                        <input type="file" id="image" name="image" required/>
                         <Button
                         lightOrDark="btn-light"
                         type="submit"
