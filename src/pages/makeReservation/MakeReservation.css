@@ -10,7 +10,7 @@
     font-size: 14px;
 }
 
-.form-make-reservation input, .form-make-reservation textarea {
+.form-make-reservation input, .form-make-reservation textarea, .form-make-reservation select {
     border-radius: 5px;
     border: 1px solid var(--darkbrown);
     padding: 10px;

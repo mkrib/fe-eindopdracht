@@ -1,0 +1,12 @@
+.blogs-overview-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-basis: 1200px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+}
