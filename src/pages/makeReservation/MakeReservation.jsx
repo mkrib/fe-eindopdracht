@@ -1,4 +1,5 @@
 import './MakeReservation.css';
+import Button from "../../components/buttons/Button.jsx";
 const MakeReservation = () => {
     return (
         <>
@@ -22,7 +23,12 @@ const MakeReservation = () => {
                         </select>
                         <label htmlFor="special-request">Speciaal verzoek</label>
                         <textarea id="special-request" name="special-request"/>
-                        <button className="btn-login" type="submit">Reserveer</button>
+                        <Button
+                        lightOrDark="btn-light"
+                        type="submit"
+                        >
+                            Reserveer
+                        </Button>
                     </form>
                 </section>
 

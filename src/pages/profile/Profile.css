@@ -66,15 +66,4 @@
     padding: 10px;
 }
 
-.btn-light {
-    background-color: var(--mediumbeige);
-    color: var(--white);
-    padding: 10px 30px;
-    margin: 20px 0;
-    border: 1px solid var(--darkbrown);
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: 600;
-}
-
 

@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import './Profile.css';
+import Button from "../../components/buttons/Button.jsx";
 
 const Profile = () => {
     return (
@@ -50,7 +51,12 @@ const Profile = () => {
                         <textarea id="content" name="content" required></textarea>
                         <label htmlFor="previewText">Tekst voorvertoning</label>
                         <textarea id="previewText" name="previewText" required></textarea>
-                        <button className="btn-light" type="submit">Verstuur</button>
+                        <Button
+                        lightOrDark="btn-light"
+                        type="submit"
+                        >
+                            Voeg toe
+                        </Button>
                     </form>
                 </div>
             </section>

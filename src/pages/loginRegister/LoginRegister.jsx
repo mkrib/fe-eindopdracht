@@ -1,4 +1,5 @@
 import './LoginRegister.css'
+import Button from "../../components/buttons/Button.jsx";
 
 const LoginRegister = () => {
     return (
@@ -12,7 +13,12 @@ const LoginRegister = () => {
                         <input type="email" id="email" name="email" required/>
                         <label htmlFor="password">Wachtwoord</label>
                         <input type="password" id="password" name="password" required/>
-                        <button className="btn-login" type="submit">Login</button>
+                        <Button
+                        lightOrDark="btn-light"
+                        type="submit"
+                        >
+                            Login
+                        </Button>
                     </form>
 
                     <h3>Nog geen account?</h3>
@@ -27,7 +33,12 @@ const LoginRegister = () => {
                         <input type="password" id="password" name="password" required/>
                         <label htmlFor="password">Herhaal wachtwoord</label>
                         <input type="password" id="password" name="password" required/>
-                        <button className="btn-register" type="submit">Registreer</button>
+                        <Button
+                        lightOrDark="btn-dark"
+                        type="submit"
+                        >
+                            Registreer
+                        </Button>
                     </form>
                 </section>
 
