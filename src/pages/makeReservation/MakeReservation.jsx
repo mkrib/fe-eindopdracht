@@ -1,6 +1,7 @@
 import './MakeReservation.css';
 import Button from "../../components/buttons/Button.jsx";
 import {useState} from "react";
+import axios from "axios";
 
 const MakeReservation = () => {
     const [formValues, setFormValues] = useState({
@@ -24,17 +25,29 @@ const MakeReservation = () => {
         });
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        console.log(
-            `Datum: ${formValues.date}
-            Tijd: ${formValues.time}
-            Aantal personen: ${formValues.persons}
-            Speciale verzoeken: ${formValues.specialRequest}`
-        );
+        try {
+            const result = await axios.post('http://localhost:8080/reservations', {
+                ...formValues,
+                created: new Date(),
+            });
+            console.log(result);
+            setIsSubmitted(true);
+        } catch (error) {
+            console.error(error.message);
+            // setError(error.message);
+        }
 
-        setIsSubmitted(true);
+        // console.log(
+        //     `Datum: ${formValues.date}
+        //     Tijd: ${formValues.time}
+        //     Aantal personen: ${formValues.persons}
+        //     Speciale verzoeken: ${formValues.specialRequest}`
+        // );
+        //
+        // setIsSubmitted(true);
     }
 
     return (
