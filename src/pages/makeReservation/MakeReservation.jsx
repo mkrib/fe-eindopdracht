@@ -9,6 +9,9 @@ const MakeReservation = () => {
         time: '',
         amountOfGuests: 1,
         specialRequest: ''
+
+    //     TODO username meegeven wanneer login is opgezet
+
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
     // const [error, setError] = useState(null);
@@ -45,15 +48,6 @@ const MakeReservation = () => {
             console.error(error.message);
             // setError(error.message);
         }
-
-        // console.log(
-        //     `Datum: ${formValues.date}
-        //     Tijd: ${formValues.time}
-        //     Aantal personen: ${formValues.persons}
-        //     Speciale verzoeken: ${formValues.specialRequest}`
-        // );
-        //
-        // setIsSubmitted(true);
     }
 
     return (
