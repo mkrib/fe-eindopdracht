@@ -51,6 +51,21 @@
 
 .display-profile-content li {
     margin: 10px 0;
+    border-bottom: 1px solid var(--darkbrown);
+    padding: 0 100px 8px 100px;
+
+    position: relative;
+}
+
+.ul-reservations button {
+    padding: 4px 8px;
+    font-size: 14px;
+    margin: 4px;
+    border: 1px solid var(--darkbrown);
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .form-add-blog {

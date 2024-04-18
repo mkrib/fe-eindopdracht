@@ -24,6 +24,17 @@ const Profile = () => {
         }
     }
 
+    async function cancelReservation(id) {
+        try {
+            const result = await axios.delete(`http://localhost:8080/reservations/${id}`);
+            console.log(result);
+            await fetchReservations();
+        } catch (error) {
+            console.error(error.message);
+            setError(error.message);
+        }
+    }
+
     useEffect(() => {
         fetchReservations();
     }, []);
@@ -48,7 +59,14 @@ const Profile = () => {
                                 <li key={reservation.id}>
                                     <p>{formatDateWithWeekday(reservation.date)} om {formatTimeWithoutSeconds(reservation.startTime)}</p>
                                     <p>{reservation.amountOfGuests} personen</p>
-                                    <p>Speciale verzoeken: {reservation.requestMessage}</p>
+                                    <p>Speciale verzoeken: {reservation.specialRequest}</p>
+                                    <Button
+                                    lightOrDark="btn-dark"
+                                    type="button"
+                                    handleClick={() => cancelReservation(reservation.id)}
+                                    >
+                                        Annuleer
+                                    </Button>
                                 </li>
                             )
                         })}

@@ -30,7 +30,14 @@ const MakeReservation = () => {
 
         try {
             const result = await axios.post('http://localhost:8080/reservations', {
-                ...formValues,
+                date: formValues.date,
+                startTime: formValues.time,
+                amountOfGuests: formValues.amountOfGuests,
+                specialRequest: formValues.specialRequest,
+            },{
+                headers: {
+                    'Content-Type': 'application/json'
+            }
             });
             console.log(result);
             setIsSubmitted(true);
@@ -91,7 +98,7 @@ const MakeReservation = () => {
                             <option value="6">6</option>
                         </select>
 
-                        <label htmlFor="specialRequest">Speciaal verzoek</label>
+                        <label htmlFor="specialRequest">Speciaal verzoek (optioneel)</label>
                         <textarea
                             id="specialRequest"
                             name="specialRequest"

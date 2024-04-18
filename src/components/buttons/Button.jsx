@@ -1,8 +1,8 @@
 import './Buttons.css';
-const Button = ({lightOrDark, type, children}) => {
+const Button = ({lightOrDark, type, handleClick, children}) => {
     return (
         <>
-            <button className={lightOrDark} type={type}>{children}</button>
+            <button className={lightOrDark} type={type} onClick={handleClick} >{children}</button>
         </>
     );
 };
