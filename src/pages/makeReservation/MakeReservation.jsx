@@ -7,7 +7,7 @@ const MakeReservation = () => {
     const [formValues, setFormValues] = useState({
         date: '',
         time: '',
-        amountOfGuests: '',
+        amountOfGuests: 1,
         specialRequest: ''
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
