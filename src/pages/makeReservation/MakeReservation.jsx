@@ -7,7 +7,7 @@ const MakeReservation = () => {
     const [formValues, setFormValues] = useState({
         date: '',
         time: '',
-        persons: '',
+        amountOfGuests: '',
         specialRequest: ''
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,7 +31,6 @@ const MakeReservation = () => {
         try {
             const result = await axios.post('http://localhost:8080/reservations', {
                 ...formValues,
-                created: new Date(),
             });
             console.log(result);
             setIsSubmitted(true);
@@ -78,10 +77,10 @@ const MakeReservation = () => {
                             onChange={handleFormChange}
                             required/>
 
-                        <label htmlFor="persons">Aantal personen</label>
-                        <select id="persons"
-                                name="persons"
-                                value={formValues.persons}
+                        <label htmlFor="amountOfGuests">Aantal personen</label>
+                        <select id="amountOfGuests"
+                                name="amountOfGuests"
+                                value={formValues.amountOfGuests}
                                 onChange={handleFormChange}
                                 required>
                             <option value="1">1</option>

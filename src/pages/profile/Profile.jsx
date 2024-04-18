@@ -3,15 +3,21 @@ import './Profile.css';
 import Button from "../../components/buttons/Button.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import formatDateWithWeekday from "../../helpers/formatDateWithWeekday.jsx";
+import formatTimeWithoutSeconds from "../../helpers/formatTimeWithoutSeconds.jsx";
 
 const Profile = () => {
-    // const [reservations, setReservations] = useState([]);
+    const [reservations, setReservations] = useState([]);
     const [error, setError] = useState(null);
 
     async function fetchReservations() {
         try {
             const result = await axios.get('http://localhost:8080/reservations');
             console.log(result);
+            const sortedReservations = result.data.sort((a, b) => {
+                return new Date(a.date) - new Date(b.date);
+            });
+            setReservations(sortedReservations);
         } catch (error) {
             console.error(error.message);
             setError(error.message);
@@ -36,20 +42,16 @@ const Profile = () => {
             <section className="profile-content">
                 <h2>Reserveringen</h2>
                 <div className="display-profile-content">
-                    <ul>
-                        <li>
-                            <p>Datum en tijd</p>
-                            <p>Aantal personen</p>
-                            <p>Naam gast</p>
-                            <p>Speciale verzoeken: </p>
-                        </li>
-
-                        <li>
-                            <p>Datum en tijd</p>
-                            <p>Aantal personen</p>
-                            <p>Naam gast</p>
-                            <p>Speciale verzoeken: </p>
-                        </li>
+                    <ul className="ul-reservations">
+                        { reservations && reservations.map((reservation) => {
+                            return (
+                                <li key={reservation.id}>
+                                    <p>{formatDateWithWeekday(reservation.date)} om {formatTimeWithoutSeconds(reservation.startTime)}</p>
+                                    <p>{reservation.amountOfGuests} personen</p>
+                                    <p>Speciale verzoeken: {reservation.requestMessage}</p>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </div>
             </section>
@@ -71,7 +73,7 @@ const Profile = () => {
                 <h2>Blog toevoegen</h2>
                 <div className="display-profile-content">
                     <form className="form-add-blog">
-                        <label htmlFor="title">Titel</label>
+                    <label htmlFor="title">Titel</label>
                         <input type="text" id="title" name="title" required/>
                         <label htmlFor="content">Content</label>
                         <textarea className="textarea-content" id="content" name="content" required></textarea>
