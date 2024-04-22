@@ -73,7 +73,7 @@ const Profile = () => {
 
                         {reservations.length === 0 && <p>Er zijn momenteel geen reserveringen.</p>}
 
-                        {error && <p>Oeps, er ging iets mis met het ophalen van de reserveringen..</p>}
+                        {error && <p>Oeps, er ging iets mis met het ophalen van de reserveringen...</p>}
                     </ul>
                 </div>
             </section>
