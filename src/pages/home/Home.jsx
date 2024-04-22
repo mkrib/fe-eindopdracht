@@ -6,8 +6,28 @@ import blogImage3 from '../../assets/blog-image-3-chef.jpg';
 import Review from "../../components/review/Review.jsx";
 import BlogPreview from "../../components/blogs/BlogPreview.jsx";
 import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const Home = () => {
+    const [reviews, setReviews] = useState([]);
+    const [error, setError] = useState(null);
+
+    async function fetchReviews() {
+        try {
+            const result = await axios.get('http://localhost:8080/reviews');
+            console.log(result);
+            setReviews(result.data);
+        } catch (error) {
+            console.error(error.message);
+            setError(error.message);
+        }
+    }
+
+    useEffect(() => {
+        fetchReviews();
+    }, []);
+
     return (
         <>
             <main>
@@ -64,26 +84,20 @@ const Home = () => {
 
                 <section className="outer-container">
 
-                    <div className="review-slider">
+                    <div className="review-scroll">
+                    <ul className="review-slider">
+                        {reviews.map((review) => (
+                            <Review
+                                key={review.id}
+                                content={review.content}
+                                reviewerName={review.fullName}
+                            />
+                        ))}
                         <Review
-                            content="Lekker eten, gezellige sfeer! Ik kom zeker nog eens terug."
-                            reviewerName="Marina de Vries"
+                        content="Het eten was voortreffelijk en de service was uitstekend. Een echte aanrader!"
+                        reviewerName="John Doe"
                         />
-
-                        <Review
-                            content="Heel sfeervol restaurant met vriendelijk personeel."
-                            reviewerName="Jantje"
-                        />
-
-                        <Review
-                            content="Top!"
-                            reviewerName="Piet Klaassen"
-                        />
-
-                        {/*<Review*/}
-                        {/*    content="Heel sfeervol restaurant met vriendelijk personeel."*/}
-                        {/*    reviewerName="Jantje"*/}
-                        {/*/>*/}
+                    </ul>
                     </div>
 
                 </section>
