@@ -76,6 +76,10 @@
     bottom: 0;
 }
 
+.name-reviewer {
+    font-style: italic;
+}
+
 .form-add-blog {
     display: flex;
     flex-direction: column;

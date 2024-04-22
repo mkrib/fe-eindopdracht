@@ -114,7 +114,7 @@ const Profile = () => {
                             return (
                                 <li key={review.id}>
                                     <p>{review.content}</p>
-                                    <p>{review.fullName}</p>
+                                    <p className="name-reviewer">{review.fullName}</p>
                                     <p>{formatDateWithWeekday(review.issueDate)}</p>
                                     <Button
                                         lightOrDark="btn-dark"
@@ -168,63 +168,52 @@ const Profile = () => {
             {/*    </ul>*/}
             {/*</div>*/}
 
-            {/*<section className="profile-content" id="id-reservations">*/}
-            {/*    <h2>Reserveringen</h2>*/}
-            {/*    <div className="display-profile-content">*/}
-            {/*        <ul className="ul-reservations">*/}
-            {/*            /!*{reservations && reservations.filter((reservation) => {*!/*/}
-            {/*            /!*    return (*!/*/}
-            {/*            /!*        <li key={reservation.id}>*!/*/}
-            {/*            /!*            <p>{formatDateWithWeekday(reservation.date)} om {formatTimeWithoutSeconds(reservation.startTime)}</p>*!/*/}
-            {/*            /!*            <p>{reservation.amountOfGuests} personen</p>*!/*/}
-            {/*            /!*            <p>Speciale verzoeken: {reservation.specialRequest}</p>*!/*/}
-            {/*            /!*            <Button*!/*/}
-            {/*            /!*                lightOrDark="btn-dark"*!/*/}
-            {/*            /!*                type="button"*!/*/}
-            {/*            /!*                handleClick={() => cancelReservation(reservation.id)}*!/*/}
-            {/*            /!*            >*!/*/}
-            {/*            /!*                Annuleer*!/*/}
-            {/*            /!*            </Button>*!/*/}
-            {/*            /!*        </li>*!/*/}
-            {/*            /!*    )*!/*/}
-            {/*            /!*})}*!/*/}
+            <section className="profile-content" id="id-reservations">
+                <h2>Reserveringen</h2>
+                <div className="display-profile-content">
+                    <ul className="ul-reservations">
+                        {/*{reservations && reservations.filter((reservation) => {*/}
+                        {/*    return (*/}
+                        {/*        <li key={reservation.id}>*/}
+                        {/*            <p>{formatDateWithWeekday(reservation.date)} om {formatTimeWithoutSeconds(reservation.startTime)}</p>*/}
+                        {/*            <p>{reservation.amountOfGuests} personen</p>*/}
+                        {/*            <p>Speciale verzoeken: {reservation.specialRequest}</p>*/}
+                        {/*            <Button*/}
+                        {/*                lightOrDark="btn-dark"*/}
+                        {/*                type="button"*/}
+                        {/*                handleClick={() => cancelReservation(reservation.id)}*/}
+                        {/*            >*/}
+                        {/*                Annuleer*/}
+                        {/*            </Button>*/}
+                        {/*        </li>*/}
+                        {/*    )*/}
+                        {/*})}*/}
 
-            {/*            /!*{reservations.length === 0 && <p>U heeft momenteel geen reserveringen.</p>}*!/*/}
+                        {/*{reservations.length === 0 && <p>U heeft momenteel geen reserveringen.</p>}*/}
 
-            {/*            /!*{error && <p>Oeps, er ging iets mis met het ophalen van de reserveringen...</p>}*!/*/}
-            {/*        </ul>*/}
-            {/*    </div>*/}
-            {/*</section>*/}
+                        {/*{error && <p>Oeps, er ging iets mis met het ophalen van de reserveringen...</p>}*/}
+                    </ul>
+                </div>
+            </section>
 
-            {/*<section className="profile-content" id="id-leave-review">*/}
-            {/*    <h2>Review achterlaten</h2>*/}
-            {/*    <div className="display-profile-content display-profile-content-small">*/}
-            {/*        <AddReviewForm/>*/}
-            {/*    </div>*/}
-            {/*</section>*/}
+            <section className="profile-content" id="id-leave-review">
+                <h2>Review achterlaten</h2>
+                <div className="display-profile-content display-profile-content-small">
+                    <AddReviewForm/>
+                </div>
+            </section>
 
-            {/*<section className="profile-content" id="id-personal-details">*/}
-            {/*    <h2>Persoonlijke gegevens</h2>*/}
-            {/*    <div className="display-profile-content">*/}
-            {/*        <form className="form-add-blog">*/}
-            {/*            <label htmlFor="title">Titel</label>*/}
-            {/*            <input type="text" id="title" name="title" required/>*/}
-            {/*            <label htmlFor="content">Content</label>*/}
-            {/*            <textarea className="textarea-blog-content" id="content" name="content" required></textarea>*/}
-            {/*            <label htmlFor="previewText">Tekst voorvertoning</label>*/}
-            {/*            <textarea className="textarea-blog-previewtext" id="previewText" name="previewText"*/}
-            {/*                      required></textarea>*/}
-            {/*            <label htmlFor="image">Afbeelding</label>*/}
-            {/*            <input type="file" id="image" name="image" required/>*/}
-            {/*            <Button*/}
-            {/*                lightOrDark="btn-light"*/}
-            {/*                type="submit"*/}
-            {/*            >*/}
-            {/*                Voeg toe*/}
-            {/*            </Button>*/}
-            {/*        </form>*/}
-            {/*    </div>*/}
-            {/*</section>*/}
+            <section className="profile-content" id="id-personal-details">
+                <h2>Persoonlijke gegevens</h2>
+                <div className="display-profile-content display-profile-content-small">
+                    <ul>
+                        <li>Voor- en achternaam:</li>
+                        <li>Emailadres:</li>
+                        <li>Telefoonnummer:</li>
+                        <li>Geboortedatum:</li>
+                    </ul>
+                </div>
+            </section>
 
 
         </>
