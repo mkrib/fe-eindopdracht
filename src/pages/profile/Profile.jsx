@@ -206,12 +206,26 @@ const Profile = () => {
             <section className="profile-content" id="id-personal-details">
                 <h2>Persoonlijke gegevens</h2>
                 <div className="display-profile-content display-profile-content-small">
-                    <ul>
-                        <li>Voor- en achternaam:</li>
-                        <li>Emailadres:</li>
-                        <li>Telefoonnummer:</li>
-                        <li>Geboortedatum:</li>
-                    </ul>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>Voor- en achternaam:</th>
+                            <td>Naam en achternaam</td>
+                        </tr>
+                        <tr>
+                            <th>Emailadres:</th>
+                            <td>Emailadres</td>
+                        </tr>
+                        <tr>
+                            <th>Telefoonnummer:</th>
+                            <td>Tel nummer</td>
+                        </tr>
+                        <tr>
+                            <th>Geboortedatum:</th>
+                            <td>xx-xx-xxxx</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
 

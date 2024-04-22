@@ -106,4 +106,8 @@
     flex-basis: 100px;
 }
 
+table th {
+    padding: 4px 30px;
+}
+
 
