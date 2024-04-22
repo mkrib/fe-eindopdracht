@@ -9,8 +9,12 @@
     left: 30px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
+    justify-content: center;
+    padding: 20px 10px;
+}
+
+.profile-side-nav-guest {
+    width: 180px;
 }
 
 .profile-side-nav ul {
@@ -49,6 +53,10 @@
     overflow-y: scroll;
 }
 
+.display-profile-content-small {
+    flex-basis: 600px;
+}
+
 .display-profile-content li {
     margin: 10px 0;
     border-bottom: 1px solid var(--darkbrown);
@@ -68,19 +76,19 @@
     bottom: 0;
 }
 
-.form-add-blog, .form-add-review {
+.form-add-blog {
     display: flex;
     flex-direction: column;
     width: 80%;
 }
 
-.form-add-blog label, .form-add-review label {
+.form-add-blog label {
     margin-top: 14px;
     font-weight: 500;
     font-size: 14px;
 }
 
-.form-add-blog input, .form-add-blog textarea, .form-add-review input, .form-add-review textarea {
+.form-add-blog input, .form-add-blog textarea {
     border-radius: 5px;
     border: 1px solid var(--darkbrown);
     padding: 10px;
