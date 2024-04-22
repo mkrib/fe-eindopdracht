@@ -30,7 +30,7 @@ const AddReviewForm = () => {
         event.preventDefault();
 
         try {
-            const result = await axios.post('http://localhost:8080/reviewss', {
+            const result = await axios.post('http://localhost:8080/reviews', {
                 fullName: formValues.nameReviewer,
                 content: formValues.content,
                 issueDate: new Date(),

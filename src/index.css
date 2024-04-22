@@ -64,3 +64,8 @@ button {
 li {
     list-style: none;
 }
+
+.p-error {
+    color: #cb3333;
+    font-size: 14px;
+}
