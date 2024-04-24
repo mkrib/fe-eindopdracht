@@ -1,0 +1,21 @@
+.form-add-review {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.form-add-review label {
+    margin-top: 14px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-add-review input, .form-add-review textarea {
+    border-radius: 5px;
+    border: 1px solid var(--darkbrown);
+    padding: 10px;
+}
+
+.textarea-review-content {
+    flex-basis: 120px;
+}

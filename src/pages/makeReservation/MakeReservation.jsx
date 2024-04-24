@@ -14,7 +14,7 @@ const MakeReservation = () => {
 
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
-    // const [error, setError] = useState(null);
+    const [error, setError] = useState(null);
 
     function handleFormChange(e) {
         const changedFieldName = e.target.name;
@@ -106,6 +106,9 @@ const MakeReservation = () => {
                         >
                             Reserveer
                         </Button>
+
+                        {error && <p className="p-error">Er ging iets mis met het versturen van uw reservering. Probeer het opnieuw.</p>}
+
                     </form>
                     }
 
