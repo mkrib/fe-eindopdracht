@@ -13,6 +13,7 @@ const LoginRegister = () => {
         emailRegister: '',
         passwordRegister: ''
     });
+    const [loginError, setLoginError] = useState(null);
 
     function handleFormChange(e) {
         const changedFieldName = e.target.name;
@@ -41,6 +42,7 @@ const LoginRegister = () => {
             console.log(result);
         } catch (error) {
             console.error(error.message);
+            setLoginError(error.message);
         }
     }
 
@@ -93,6 +95,8 @@ const LoginRegister = () => {
                         >
                             Login
                         </Button>
+
+                        {loginError && <p className="p-error">De combinatie is onjuist. Probeer het opnieuw.</p>}
                     </form>
 
                     {/*TODO de velden met persoonlijke gegevens weer op required zetten, wanneer de relatie met het profiel staat*/}
