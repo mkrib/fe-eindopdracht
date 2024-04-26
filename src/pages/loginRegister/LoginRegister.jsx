@@ -1,7 +1,9 @@
 import './LoginRegister.css'
 import Button from "../../components/buttons/Button.jsx";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import axios from "axios";
+import {AuthContext} from "../../contexts/AuthContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 const LoginRegister = () => {
     const [formValues, setFormValues] = useState({
@@ -14,6 +16,9 @@ const LoginRegister = () => {
         passwordRegister: ''
     });
     const [loginError, setLoginError] = useState(null);
+
+    const { login }  = useContext(AuthContext);
+    const navigate = useNavigate();
 
     function handleFormChange(e) {
         const changedFieldName = e.target.name;
@@ -39,7 +44,10 @@ const LoginRegister = () => {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log(result);
+              if (result.status === 200) {
+                  login(result.data.jwt);
+                  navigate("/profile");
+              }
         } catch (error) {
             console.error(error.message);
             setLoginError(error.message);
@@ -74,7 +82,8 @@ const LoginRegister = () => {
                     <h3>Inloggen</h3>
                     <form className="form-login" onSubmit={handleSubmitLogin}>
                         <label htmlFor="emailLogin">Emailadres</label>
-                        <input type="emailLogin"
+                        {/*TODO type uiteindelijk veranderen naar email*/}
+                        <input type="text"
                                id="emailLogin"
                                name="emailLogin"
                                value={formValues.emailLogin}
@@ -82,7 +91,7 @@ const LoginRegister = () => {
                                required/>
 
                         <label htmlFor="passwordLogin">Wachtwoord</label>
-                        <input type="passwordLogin"
+                        <input type="password"
                                id="passwordLogin"
                                name="passwordLogin"
                                value={formValues.passwordLogin}
@@ -109,7 +118,7 @@ const LoginRegister = () => {
                         <input type="tel" id="phonenumber" name="phonenumber"/>
 
                         <label htmlFor="emailRegister">Emailadres</label>
-                        <input type="emailRegister"
+                        <input type="email"
                                id="emailRegister"
                                name="emailRegister"
                                value={formValues.emailRegister}
@@ -117,7 +126,7 @@ const LoginRegister = () => {
                                required/>
 
                         <label htmlFor="passwordRegister">Wachtwoord</label>
-                        <input type="passwordRegister"
+                        <input type="password"
                                id="passwordRegister"
                                name="passwordRegister"
                                value={formValues.passwordRegister}
@@ -125,7 +134,7 @@ const LoginRegister = () => {
                                required/>
 
                         <label htmlFor="repeatPassword">Herhaal wachtwoord</label>
-                        <input type="repeatPassword" id="repeatPassword" name="repeatPassword"/>
+                        <input type="password" id="repeatPassword" name="repeatPassword"/>
                         <Button
                             lightOrDark="btn-dark"
                             type="submit"
