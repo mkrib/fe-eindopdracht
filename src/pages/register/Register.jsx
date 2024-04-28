@@ -1,19 +1,23 @@
 import Button from "../../components/buttons/Button.jsx";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import './Register.css';
 
 const Register = () => {
     const [formValues, setFormValues] = useState({
-        fullnameRegister: '',
-        phonenumberRegister: '',
-        emailRegister: '',
-        passwordRegister: ''
+        fullname: '',
+        phonenumber: '',
+        dateOfBirth: '',
+        email: '',
+        password: '',
+        repeatPassword: ''
     });
 
     const [registerSuccess, setRegisterSuccess] = useState(null);
     const navigate = useNavigate();
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [passwordMatch, setPasswordMatch] = useState(true);
 
     function handleFormChange(e) {
         const changedFieldName = e.target.name;
@@ -23,29 +27,43 @@ const Register = () => {
             ...formValues,
             [changedFieldName]: newValue,
         });
+
+        if (changedFieldName === 'repeatPassword') {
+            setPasswordMatch(newValue === formValues.password);
+        }
     }
+
+    useEffect(() => {
+        if (registerSuccess) {
+            const timer = setTimeout(() => {
+                navigate("/login");
+            }, 4000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [registerSuccess, navigate]);
 
     async function handleSubmitRegister(event) {
         event.preventDefault();
 
         try {
             const result = await axios.post('http://localhost:8080/users', {
-                username: formValues.emailRegister,
-                password: formValues.passwordRegister,
+                username: formValues.email,
+                password: formValues.password,
                 profile: {
-                    fullName: formValues.fullnameRegister,
-                    phoneNumber: formValues.phonenumberRegister,
-                    email: formValues.emailRegister
+                    fullName: formValues.fullname,
+                    phoneNumber: formValues.phonenumber,
+                    dateOfBirth: formValues.dateOfBirth,
+                    email: formValues.email
                 }
             }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log(result);
-            if(result.status === 201) {
+            setIsSubmitted(true);
+            if (result.status === 201) {
                 setRegisterSuccess(true);
-                navigate("/login");
             }
         } catch (error) {
             console.error(error.message);
@@ -53,59 +71,83 @@ const Register = () => {
     }
 
     return (
-       <>
-           <main className="outer-container">
-               <section className="inner-container">
+        <>
+            <main className="outer-container">
+                <section className="inner-container">
 
-       {/*TODO de velden met persoonlijke gegevens weer op required zetten, wanneer de relatie met het profiel staat*/}
-       <h3>Registeren</h3>
-       <form className="form-register" onSubmit={handleSubmitRegister}>
-           <label htmlFor="fullnameRegister">Voor- en achternaam</label>
-           <input type="text"
-                  id="fullnameRegister"
-                  name="fullnameRegister"
-                  value={formValues.fullnameRegister}
-                  onChange={handleFormChange}
-           />
+                    <h3>Registeren</h3>
 
-           <label htmlFor="phonenumberRegister">Telefoonnummer</label>
-           <input type="tel"
-                  id="phonenumberRegister"
-                  name="phonenumberRegister"
-                  value={formValues.phonenumberRegister}
-                  onChange={handleFormChange}
-           />
+                    {!isSubmitted && !registerSuccess &&
+                        <form className="form-register" onSubmit={handleSubmitRegister}>
+                            <label htmlFor="fullname">Voor- en achternaam</label>
+                            <input type="text"
+                                   id="fullname"
+                                   name="fullname"
+                                   value={formValues.fullname}
+                                   onChange={handleFormChange}
+                                   required
+                            />
 
-           <label htmlFor="emailRegister">Emailadres</label>
-           <input type="email"
-                  id="emailRegister"
-                  name="emailRegister"
-                  value={formValues.emailRegister}
-                  onChange={handleFormChange}
-                  required/>
+                            <label htmlFor="phonenumber">Telefoonnummer</label>
+                            <input type="tel"
+                                   id="phonenumber"
+                                   name="phonenumber"
+                                   value={formValues.phonenumber}
+                                   onChange={handleFormChange}
+                                   required
+                            />
 
-           <label htmlFor="passwordRegister">Wachtwoord</label>
-           <input type="password"
-                  id="passwordRegister"
-                  name="passwordRegister"
-                  value={formValues.passwordRegister}
-                  onChange={handleFormChange}
-                  required/>
+                            <label htmlFor="dateOfBirth">Geboortedatum</label>
+                            <input
+                                type="date"
+                                id="dateOfBirth"
+                                name="dateOfBirth"
+                                value={formValues.dateOfBirth}
+                                onChange={handleFormChange}
+                                required
+                            />
 
-           <label htmlFor="repeatPassword">Herhaal wachtwoord</label>
-           <input type="password" id="repeatPassword" name="repeatPassword"/>
+                            <label htmlFor="email">Emailadres</label>
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   value={formValues.email}
+                                   onChange={handleFormChange}
+                                   required/>
 
-           <Button
-               lightOrDark="btn-dark"
-               type="submit"
-           >
-               Registreer
-           </Button>
-       </form>
+                            <label htmlFor="password">Wachtwoord</label>
+                            <input type="password"
+                                   id="password"
+                                   name="password"
+                                   value={formValues.password}
+                                   onChange={handleFormChange}
+                                   required/>
 
-       </section>
-         </main>
-           </>
+                            <label htmlFor="repeatPassword">Herhaal wachtwoord</label>
+                            <input type="password"
+                                   id="repeatPassword"
+                                   name="repeatPassword"
+                                   value={formValues.repeatPassword}
+                                   onChange={handleFormChange}
+                            />
+
+                            {!passwordMatch && <p className="p-error">Wachtwoorden komen niet overeen.</p>}
+
+                            <Button
+                                lightOrDark="btn-dark"
+                                type="submit"
+                            >
+                                Registreer
+                            </Button>
+
+                        </form>}
+
+                    {isSubmitted && registerSuccess &&
+                        <p className="p-success">U bent succesvol geregistreerd. U wordt doorgestuurd naar de login pagina.</p>}
+
+                </section>
+            </main>
+        </>
     );
 };
 
