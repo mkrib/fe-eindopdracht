@@ -4,13 +4,14 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import Navbar from "./components/navbar/Navbar.jsx";
 import BlogsOverview from "./pages/blogsOverview/BlogsOverview.jsx";
 import BlogDetailpage from "./pages/blogDetailpage/BlogDetailpage.jsx";
-import LoginRegister from "./pages/loginRegister/LoginRegister.jsx";
+import Login from "./pages/loginRegister/Login.jsx";
 import Menu from "./pages/menu/Menu.jsx";
 import MakeReservation from "./pages/makeReservation/MakeReservation.jsx";
 import NotFound from "./pages/notFound/NotFound.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import {AuthContext} from "./contexts/AuthContext.jsx";
 import {useContext} from "react";
+import Register from "./pages/register/Register.jsx";
 
 function App() {
 
@@ -26,7 +27,8 @@ function App() {
                 <Route path="/blogs" element={<BlogsOverview/>}/>
                 <Route path="/blog/:id" element={<BlogDetailpage/>}/>
                 <Route path="/make-reservation" element={<MakeReservation/>}/>
-                <Route path="/login" element={<LoginRegister/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 {/*TODO uiteindelijk onderstaande route gebruiken*/}
                 {/*<Route path="/profile" element={isAuth? <Profile/> : <Navigate to="/login"/> }/>*/}

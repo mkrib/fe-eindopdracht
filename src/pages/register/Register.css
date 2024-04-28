@@ -1,16 +1,16 @@
-.form-login, .form-register {
+.form-register {
     display: flex;
     flex-direction: column;
     min-width: 300px;
 }
 
-.form-login label, .form-register label {
+.form-register label {
     margin-top: 14px;
     font-weight: 500;
     font-size: 14px;
 }
 
-.form-login input, .form-register input {
+.form-register input {
     border-radius: 5px;
     border: 1px solid var(--darkbrown);
     padding: 10px;
