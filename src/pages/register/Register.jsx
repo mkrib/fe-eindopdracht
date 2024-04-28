@@ -144,7 +144,6 @@ const Register = () => {
 
                     {isSubmitted && registerSuccess &&
                         <p className="p-success">U bent succesvol geregistreerd. U wordt doorgestuurd naar de login pagina.</p>}
-
                 </section>
             </main>
         </>
