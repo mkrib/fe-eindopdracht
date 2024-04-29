@@ -75,15 +75,15 @@ const Profile = () => {
 
                     <div className="profile-side-nav">
                         <ul>
-                            <li>{isAuth && user.username}</li>
-                            <li><a href="#id-reservations">Reserveringen</a></li>
-                            <li><a href="#id-reviews">Reviews</a></li>
-                            <li><a href="#id-add-blog">Blog toevoegen</a></li>
-                            <li onClick={logout}>Log uit</li>
+                            <li className="p-username">{isAuth && user.username}</li>
+                            <li><a href="#reservations">Reserveringen</a></li>
+                            <li><a href="#reviews">Reviews</a></li>
+                            <li><a href="#add-blog">Blog toevoegen</a></li>
+                            <li className="li-logout" onClick={logout}>Log uit</li>
                         </ul>
                     </div>
 
-                    <section className="profile-content" id="id-reservations">
+                    <section className="profile-content" id="reservations">
                         <h2>Reserveringen</h2>
                         <div className="display-profile-content">
                             <ul className="ul-reservations">
@@ -111,7 +111,7 @@ const Profile = () => {
                         </div>
                     </section>
 
-                    <section className="profile-content" id="id-reviews">
+                    <section className="profile-content" id="reviews">
                         <h2>Reviews</h2>
                         <div className="display-profile-content">
 
@@ -140,7 +140,7 @@ const Profile = () => {
                         </div>
                     </section>
 
-                    <section className="profile-content" id="id-add-blog">
+                    <section className="profile-content" id="add-blog">
                         <h2>Blog toevoegen</h2>
                         <div className="display-profile-content">
                             <form className="form-add-blog">
@@ -172,15 +172,15 @@ const Profile = () => {
 
                     <div className="profile-side-nav profile-side-nav-guest">
                         <ul>
-                            <li>{isAuth && user.username}</li>
-                            <li><a href="#id-reservations">Reserveringen</a></li>
-                            <li><a href="#id-leave-review">Review achterlaten</a></li>
-                            <li><a href="#id-personal-details">Persoonlijke gegevens</a></li>
-                            <li onClick={logout}>Log uit</li>
+                            <li className="p-username">{isAuth && user.username}</li>
+                            <li><a href="#reservations">Reserveringen</a></li>
+                            <li><a href="#leave-review">Review achterlaten</a></li>
+                            <li><a href="#personal-details">Persoonlijke gegevens</a></li>
+                            <li className="li-logout" onClick={logout}>Log uit</li>
                         </ul>
                     </div>
 
-                    <section className="profile-content" id="id-reservations">
+                    <section className="profile-content" id="reservations">
                         <h2>Reserveringen</h2>
                         <div className="display-profile-content">
                             <ul className="ul-reservations">
@@ -208,14 +208,14 @@ const Profile = () => {
                         </div>
                     </section>
 
-                    <section className="profile-content" id="id-leave-review">
+                    <section className="profile-content" id="leave-review">
                         <h2>Review achterlaten</h2>
                         <div className="display-profile-content display-profile-content-small">
                             <AddReviewForm/>
                         </div>
                     </section>
 
-                    <section className="profile-content" id="id-personal-details">
+                    <section className="profile-content" id="personal-details">
                         <h2>Persoonlijke gegevens</h2>
                         <div className="display-profile-content display-profile-content-small">
                             <table>
