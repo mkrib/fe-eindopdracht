@@ -114,4 +114,15 @@ table th {
     padding: 4px 30px;
 }
 
+.p-no-auth {
+    text-align: center;
+    margin: 20px 10px 0 10px;
+}
+
+.p-no-auth a {
+    color: var(--darkbrown);
+    border-bottom: 1px solid var(--darkbrown);
+    font-weight: 500;
+}
+
 

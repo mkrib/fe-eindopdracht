@@ -41,7 +41,11 @@ function AuthContextProvider({children}) {
                 user: {
                     username: result.data.username,
                     apiKey: result.data.apiKey,
-                    roles: result.data.roles[0].role
+                    roles: result.data.roles[0].role,
+                    email: result.data.profile.email,
+                    fullName: result.data.profile.fullName,
+                    phoneNumber: result.data.profile.phoneNumber,
+                    dateOfBirth: result.data.profile.dateOfBirth,
                 },
                 status: "done"
             });

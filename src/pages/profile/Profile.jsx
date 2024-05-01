@@ -7,6 +7,7 @@ import formatDateWithWeekday from "../../helpers/formatDateWithWeekday.jsx";
 import formatTimeWithoutSeconds from "../../helpers/formatTimeWithoutSeconds.jsx";
 import AddReviewForm from "../../components/review/AddReviewForm.jsx";
 import {AuthContext} from "../../contexts/AuthContext.jsx";
+import formatDateWithoutWeekday from "../../helpers/formatDateWithoutWeekday.jsx";
 
 const Profile = () => {
     const [reservations, setReservations] = useState([]);
@@ -14,6 +15,7 @@ const Profile = () => {
     const [error, setError] = useState(null);
 
     const {logout, user, isAuth} = useContext(AuthContext);
+
 
     async function fetchReservations() {
         try {
@@ -222,24 +224,31 @@ const Profile = () => {
                                 <tbody>
                                 <tr>
                                     <th>Voor- en achternaam:</th>
-                                    <td>Naam en achternaam</td>
+                                    {user && <td>{user.fullName}</td>}
                                 </tr>
                                 <tr>
                                     <th>Emailadres:</th>
-                                    <td>Emailadres</td>
+                                    {user && <td>{user.email}</td>}
                                 </tr>
                                 <tr>
                                     <th>Telefoonnummer:</th>
-                                    <td>Tel nummer</td>
+                                    {user && <td>{user.phoneNumber}</td>}
                                 </tr>
                                 <tr>
                                     <th>Geboortedatum:</th>
-                                    <td>xx-xx-xxxx</td>
+                                    {user && <td>{formatDateWithoutWeekday(user.dateOfBirth)}</td>}
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </section>
+                </>
+            }
+
+            {!isAuth &&
+                <>
+                <p className="p-no-auth">U bent niet (langer) ingelogd. </p>
+                <p className="p-no-auth"><Link to="/login">Klik hier om naar de inlogpagina te gaan</Link></p>
                 </>
             }
 
