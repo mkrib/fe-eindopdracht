@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import './Profile.css';
 import Button from "../../components/buttons/Button.jsx";
 import {useContext, useEffect, useState} from "react";
@@ -16,6 +16,50 @@ const Profile = () => {
 
     const {logout, user, isAuth} = useContext(AuthContext);
 
+    const [formValues, setFormValues] = useState({
+        username: '',
+        password: '',
+        repeatPassword: ''
+    });
+
+    const [registerSuccess, setRegisterSuccess] = useState(null);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [passwordMatch, setPasswordMatch] = useState(true);
+
+    function handleFormChange(e) {
+        const changedFieldName = e.target.name;
+        const newValue = e.target.value;
+
+        setFormValues({
+            ...formValues,
+            [changedFieldName]: newValue,
+        });
+
+        if (changedFieldName === 'repeatPassword') {
+            setPasswordMatch(newValue === formValues.password);
+        }
+    }
+
+    async function handleSubmitRegister(event) {
+        event.preventDefault();
+
+        try {
+            const result = await axios.post('http://localhost:8080/users/admin', {
+                username: formValues.username,
+                password: formValues.password,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            setIsSubmitted(true);
+            if (result.status === 201) {
+                setRegisterSuccess(true);
+            }
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
 
     async function fetchReservations() {
         try {
@@ -71,6 +115,8 @@ const Profile = () => {
 
     return (
         <>
+            {/*PROFILE ADMIN*/}
+
             {isAuth && user.roles === "ROLE_ADMIN" &&
 
                 <>
@@ -81,6 +127,7 @@ const Profile = () => {
                             <li><a href="#reservations">Reserveringen</a></li>
                             <li><a href="#reviews">Reviews</a></li>
                             <li><a href="#add-blog">Blog toevoegen</a></li>
+                            <li><a href="#add-account">Account toevoegen</a></li>
                             <li className="li-logout" onClick={logout}>Log uit</li>
                         </ul>
                     </div>
@@ -145,6 +192,7 @@ const Profile = () => {
                     <section className="profile-content" id="add-blog">
                         <h2>Blog toevoegen</h2>
                         <div className="display-profile-content">
+
                             <form className="form-add-blog">
                                 <label htmlFor="title">Titel</label>
                                 <input type="text" id="title" name="title" required/>
@@ -163,10 +211,61 @@ const Profile = () => {
                                     Voeg toe
                                 </Button>
                             </form>
+
+                        </div>
+                    </section>
+
+                    <section className="profile-content" id="add-account">
+                        <h2>Admin account toevoegen</h2>
+                        <div className="display-profile-content">
+
+                            {!isSubmitted &&
+                                <form className="form-register" onSubmit={handleSubmitRegister}>
+                                    <label htmlFor="username">Gebruikersnaam</label>
+                                    <input type="text"
+                                           id="username"
+                                           name="username"
+                                           value={formValues.username}
+                                           onChange={handleFormChange}
+                                           required
+                                    />
+
+                                    <label htmlFor="password">Wachtwoord</label>
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           value={formValues.password}
+                                           onChange={handleFormChange}
+                                           required/>
+
+                                    <label htmlFor="repeatPassword">Herhaal wachtwoord</label>
+                                    <input type="password"
+                                           id="repeatPassword"
+                                           name="repeatPassword"
+                                           value={formValues.repeatPassword}
+                                           onChange={handleFormChange}
+                                    />
+
+                                    {!passwordMatch && <p className="p-error">Wachtwoorden komen niet overeen.</p>}
+
+                                    <Button
+                                        lightOrDark="btn-dark"
+                                        type="submit"
+                                    >
+                                        Registreer
+                                    </Button>
+
+                                </form>}
+
+                            {isSubmitted &&
+                                <p className="p-success">De nieuwe admin is succesvol geregistreerd. Het account kan nu worden gebruikt.</p>}
+
                         </div>
                     </section>
                 </>
             }
+
+            {/*PROFILE USER*/}
 
             {isAuth && user.roles === "ROLE_USER" &&
 
