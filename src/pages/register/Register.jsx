@@ -6,10 +6,12 @@ import './Register.css';
 
 const Register = () => {
     const [formValues, setFormValues] = useState({
-        fullname: '',
+        firstname: '',
+        lastname: '',
         phonenumber: '',
         dateOfBirth: '',
         email: '',
+        username: '',
         password: '',
         repeatPassword: ''
     });
@@ -48,10 +50,11 @@ const Register = () => {
 
         try {
             const result = await axios.post('http://localhost:8080/users', {
-                username: formValues.email,
+                username: formValues.username,
                 password: formValues.password,
                 profile: {
-                    fullName: formValues.fullname,
+                    firstname: formValues.firstname,
+                    lastname: formValues.lastname,
                     phoneNumber: formValues.phonenumber,
                     dateOfBirth: formValues.dateOfBirth,
                     email: formValues.email
@@ -79,11 +82,20 @@ const Register = () => {
 
                     {!isSubmitted && !registerSuccess &&
                         <form className="form-register" onSubmit={handleSubmitRegister}>
-                            <label htmlFor="fullname">Voor- en achternaam</label>
+                            <label htmlFor="firstname">Voornaam</label>
                             <input type="text"
-                                   id="fullname"
-                                   name="fullname"
-                                   value={formValues.fullname}
+                                   id="firstname"
+                                   name="firstname"
+                                   value={formValues.firstname}
+                                   onChange={handleFormChange}
+                                   required
+                            />
+
+                            <label htmlFor="lastname">Achternaam</label>
+                            <input type="text"
+                                   id="lastname"
+                                   name="lastname"
+                                   value={formValues.lastname}
                                    onChange={handleFormChange}
                                    required
                             />
@@ -115,6 +127,15 @@ const Register = () => {
                                    onChange={handleFormChange}
                                    required/>
 
+                            <label htmlFor="username">Gebruikersnaam</label>
+                            <input type="text"
+                                   id="username"
+                                   name="username"
+                                   value={formValues.username}
+                                   onChange={handleFormChange}
+                                   required
+                            />
+
                             <label htmlFor="password">Wachtwoord</label>
                             <input type="password"
                                    id="password"
@@ -143,7 +164,8 @@ const Register = () => {
                         </form>}
 
                     {isSubmitted && registerSuccess &&
-                        <p className="p-success">U bent succesvol geregistreerd. U wordt doorgestuurd naar de login pagina.</p>}
+                        <p className="p-success">U bent succesvol geregistreerd. U wordt doorgestuurd naar de login
+                            pagina.</p>}
                 </section>
             </main>
         </>

@@ -28,7 +28,7 @@ function AuthContextProvider({children}) {
             });
 
             const { username, apiKey, roles, profile } = result.data;
-            const { email, fullName, phoneNumber, dateOfBirth } = profile || {};
+            const { email, firstname, lastname, phoneNumber, dateOfBirth } = profile || {};
 
             setAuth({
                 ...auth,
@@ -39,7 +39,8 @@ function AuthContextProvider({children}) {
                     roles: roles[0].role,
                     // TODO technische keuze om hier te checken of de user een profile heeft en de waarden anders als lege string mee te geven, zodat wanneer er een admin inlogt die geen profiel heeft, de app niet crasht en de gebruikers toch via dezelfde wijze kunnen inloggen. Een andere reden dat ik ervoor heb gekozen om hier de profielgegevens op te halen in plaats van in het profiel zelf, is dat er nu de gegevens meteen worden gevuld voordat de profile pagina wordt geladen en dat de gegevens dan al beschikbaar zijn.
                     email: email || '',
-                    fullName: fullName || '',
+                    firstname: firstname || '',
+                    lastname: lastname || '',
                     phoneNumber: phoneNumber || '',
                     dateOfBirth: dateOfBirth || ''
                 },

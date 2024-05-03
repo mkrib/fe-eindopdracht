@@ -9,10 +9,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 10px;
-}
-
-.profile-side-nav-guest {
-    max-width: 180px;
+    max-width: 160px;
 }
 
 .p-username {

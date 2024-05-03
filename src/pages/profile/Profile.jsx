@@ -127,7 +127,7 @@ const Profile = () => {
                             <li><a href="#reservations">Reserveringen</a></li>
                             <li><a href="#reviews">Reviews</a></li>
                             <li><a href="#add-blog">Blog toevoegen</a></li>
-                            <li><a href="#add-account">Account toevoegen</a></li>
+                            <li><a href="#add-account">Nieuw account</a></li>
                             <li className="li-logout" onClick={logout}>Log uit</li>
                         </ul>
                     </div>
@@ -216,8 +216,8 @@ const Profile = () => {
                     </section>
 
                     <section className="profile-content" id="add-account">
-                        <h2>Admin account toevoegen</h2>
-                        <div className="display-profile-content">
+                        <h2>Nieuw account toevoegen</h2>
+                        <div className="display-profile-content display-profile-content-small">
 
                             {!isSubmitted &&
                                 <form className="form-register" onSubmit={handleSubmitRegister}>
@@ -271,7 +271,7 @@ const Profile = () => {
 
                 <>
 
-                    <div className="profile-side-nav profile-side-nav-guest">
+                    <div className="profile-side-nav">
                         <ul>
                             <li className="p-username">{isAuth && user.username}</li>
                             <li><a href="#reservations">Reserveringen</a></li>
@@ -322,20 +322,28 @@ const Profile = () => {
                             <table>
                                 <tbody>
                                 <tr>
-                                    <th>Voor- en achternaam:</th>
-                                    {user && <td>{user.fullName}</td>}
+                                    <th>Gebruikersnaam:</th>
+                                    {user.username && <td>{user.username}</td>}
+                                </tr>
+                                <tr>
+                                    <th>Voornaam:</th>
+                                    {user.firstname && <td>{user.firstname}</td>}
+                                </tr>
+                                <tr>
+                                    <th>Achternaam:</th>
+                                    {user.lastname && <td>{user.lastname}</td>}
                                 </tr>
                                 <tr>
                                     <th>Emailadres:</th>
-                                    {user && <td>{user.email}</td>}
+                                    {user.email && <td>{user.email}</td>}
                                 </tr>
                                 <tr>
                                     <th>Telefoonnummer:</th>
-                                    {user && <td>{user.phoneNumber}</td>}
+                                    {user.phoneNumber && <td>{user.phoneNumber}</td>}
                                 </tr>
                                 <tr>
                                     <th>Geboortedatum:</th>
-                                    {user && <td>{formatDateWithoutWeekday(user.dateOfBirth)}</td>}
+                                    {user.dateOfBirth && <td>{formatDateWithoutWeekday(user.dateOfBirth)}</td>}
                                 </tr>
                                 </tbody>
                             </table>
