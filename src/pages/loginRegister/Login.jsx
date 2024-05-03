@@ -55,8 +55,8 @@ const Login = () => {
 
                     <h3>Inloggen</h3>
                     <form className="form-login" onSubmit={handleSubmitLogin}>
+                        {/*TODO hier toch een gebruikersnaam van maken ipv email*/}
                         <label htmlFor="emailLogin">Emailadres</label>
-                        {/*TODO type uiteindelijk veranderen naar email*/}
                         <input type="text"
                                id="emailLogin"
                                name="emailLogin"

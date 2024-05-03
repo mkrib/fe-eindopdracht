@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import './Profile.css';
 import Button from "../../components/buttons/Button.jsx";
 import {useContext, useEffect, useState} from "react";
@@ -7,6 +7,7 @@ import formatDateWithWeekday from "../../helpers/formatDateWithWeekday.jsx";
 import formatTimeWithoutSeconds from "../../helpers/formatTimeWithoutSeconds.jsx";
 import AddReviewForm from "../../components/review/AddReviewForm.jsx";
 import {AuthContext} from "../../contexts/AuthContext.jsx";
+import formatDateWithoutWeekday from "../../helpers/formatDateWithoutWeekday.jsx";
 
 const Profile = () => {
     const [reservations, setReservations] = useState([]);
@@ -14,6 +15,51 @@ const Profile = () => {
     const [error, setError] = useState(null);
 
     const {logout, user, isAuth} = useContext(AuthContext);
+
+    const [formValues, setFormValues] = useState({
+        username: '',
+        password: '',
+        repeatPassword: ''
+    });
+
+    const [registerSuccess, setRegisterSuccess] = useState(null);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [passwordMatch, setPasswordMatch] = useState(true);
+
+    function handleFormChange(e) {
+        const changedFieldName = e.target.name;
+        const newValue = e.target.value;
+
+        setFormValues({
+            ...formValues,
+            [changedFieldName]: newValue,
+        });
+
+        if (changedFieldName === 'repeatPassword') {
+            setPasswordMatch(newValue === formValues.password);
+        }
+    }
+
+    async function handleSubmitRegister(event) {
+        event.preventDefault();
+
+        try {
+            const result = await axios.post('http://localhost:8080/users/admin', {
+                username: formValues.username,
+                password: formValues.password,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            setIsSubmitted(true);
+            if (result.status === 201) {
+                setRegisterSuccess(true);
+            }
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
 
     async function fetchReservations() {
         try {
@@ -69,21 +115,24 @@ const Profile = () => {
 
     return (
         <>
+            {/*PROFILE ADMIN*/}
+
             {isAuth && user.roles === "ROLE_ADMIN" &&
 
                 <>
 
                     <div className="profile-side-nav">
                         <ul>
-                            <li>{isAuth && user.username}</li>
-                            <li><a href="#id-reservations">Reserveringen</a></li>
-                            <li><a href="#id-reviews">Reviews</a></li>
-                            <li><a href="#id-add-blog">Blog toevoegen</a></li>
-                            <li onClick={logout}>Log uit</li>
+                            <li className="p-username">{isAuth && user.username}</li>
+                            <li><a href="#reservations">Reserveringen</a></li>
+                            <li><a href="#reviews">Reviews</a></li>
+                            <li><a href="#add-blog">Blog toevoegen</a></li>
+                            <li><a href="#add-account">Nieuw account</a></li>
+                            <li className="li-logout" onClick={logout}>Log uit</li>
                         </ul>
                     </div>
 
-                    <section className="profile-content" id="id-reservations">
+                    <section className="profile-content" id="reservations">
                         <h2>Reserveringen</h2>
                         <div className="display-profile-content">
                             <ul className="ul-reservations">
@@ -111,7 +160,7 @@ const Profile = () => {
                         </div>
                     </section>
 
-                    <section className="profile-content" id="id-reviews">
+                    <section className="profile-content" id="reviews">
                         <h2>Reviews</h2>
                         <div className="display-profile-content">
 
@@ -140,9 +189,10 @@ const Profile = () => {
                         </div>
                     </section>
 
-                    <section className="profile-content" id="id-add-blog">
+                    <section className="profile-content" id="add-blog">
                         <h2>Blog toevoegen</h2>
                         <div className="display-profile-content">
+
                             <form className="form-add-blog">
                                 <label htmlFor="title">Titel</label>
                                 <input type="text" id="title" name="title" required/>
@@ -161,26 +211,77 @@ const Profile = () => {
                                     Voeg toe
                                 </Button>
                             </form>
+
+                        </div>
+                    </section>
+
+                    <section className="profile-content" id="add-account">
+                        <h2>Nieuw account toevoegen</h2>
+                        <div className="display-profile-content display-profile-content-small">
+
+                            {!isSubmitted &&
+                                <form className="form-register" onSubmit={handleSubmitRegister}>
+                                    <label htmlFor="username">Gebruikersnaam</label>
+                                    <input type="text"
+                                           id="username"
+                                           name="username"
+                                           value={formValues.username}
+                                           onChange={handleFormChange}
+                                           required
+                                    />
+
+                                    <label htmlFor="password">Wachtwoord</label>
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           value={formValues.password}
+                                           onChange={handleFormChange}
+                                           required/>
+
+                                    <label htmlFor="repeatPassword">Herhaal wachtwoord</label>
+                                    <input type="password"
+                                           id="repeatPassword"
+                                           name="repeatPassword"
+                                           value={formValues.repeatPassword}
+                                           onChange={handleFormChange}
+                                    />
+
+                                    {!passwordMatch && <p className="p-error">Wachtwoorden komen niet overeen.</p>}
+
+                                    <Button
+                                        lightOrDark="btn-dark"
+                                        type="submit"
+                                    >
+                                        Registreer
+                                    </Button>
+
+                                </form>}
+
+                            {isSubmitted &&
+                                <p className="p-success">De nieuwe admin is succesvol geregistreerd. Het account kan nu worden gebruikt.</p>}
+
                         </div>
                     </section>
                 </>
             }
 
+            {/*PROFILE USER*/}
+
             {isAuth && user.roles === "ROLE_USER" &&
 
                 <>
 
-                    <div className="profile-side-nav profile-side-nav-guest">
+                    <div className="profile-side-nav">
                         <ul>
-                            <li>{isAuth && user.username}</li>
-                            <li><a href="#id-reservations">Reserveringen</a></li>
-                            <li><a href="#id-leave-review">Review achterlaten</a></li>
-                            <li><a href="#id-personal-details">Persoonlijke gegevens</a></li>
-                            <li onClick={logout}>Log uit</li>
+                            <li className="p-username">{isAuth && user.username}</li>
+                            <li><a href="#reservations">Reserveringen</a></li>
+                            <li><a href="#leave-review">Review achterlaten</a></li>
+                            <li><a href="#personal-details">Persoonlijke gegevens</a></li>
+                            <li className="li-logout" onClick={logout}>Log uit</li>
                         </ul>
                     </div>
 
-                    <section className="profile-content" id="id-reservations">
+                    <section className="profile-content" id="reservations">
                         <h2>Reserveringen</h2>
                         <div className="display-profile-content">
                             <ul className="ul-reservations">
@@ -208,38 +309,53 @@ const Profile = () => {
                         </div>
                     </section>
 
-                    <section className="profile-content" id="id-leave-review">
+                    <section className="profile-content" id="leave-review">
                         <h2>Review achterlaten</h2>
                         <div className="display-profile-content display-profile-content-small">
                             <AddReviewForm/>
                         </div>
                     </section>
 
-                    <section className="profile-content" id="id-personal-details">
+                    <section className="profile-content" id="personal-details">
                         <h2>Persoonlijke gegevens</h2>
                         <div className="display-profile-content display-profile-content-small">
                             <table>
                                 <tbody>
                                 <tr>
-                                    <th>Voor- en achternaam:</th>
-                                    <td>Naam en achternaam</td>
+                                    <th>Gebruikersnaam:</th>
+                                    {user.username && <td>{user.username}</td>}
+                                </tr>
+                                <tr>
+                                    <th>Voornaam:</th>
+                                    {user.firstname && <td>{user.firstname}</td>}
+                                </tr>
+                                <tr>
+                                    <th>Achternaam:</th>
+                                    {user.lastname && <td>{user.lastname}</td>}
                                 </tr>
                                 <tr>
                                     <th>Emailadres:</th>
-                                    <td>Emailadres</td>
+                                    {user.email && <td>{user.email}</td>}
                                 </tr>
                                 <tr>
                                     <th>Telefoonnummer:</th>
-                                    <td>Tel nummer</td>
+                                    {user.phoneNumber && <td>{user.phoneNumber}</td>}
                                 </tr>
                                 <tr>
                                     <th>Geboortedatum:</th>
-                                    <td>xx-xx-xxxx</td>
+                                    {user.dateOfBirth && <td>{formatDateWithoutWeekday(user.dateOfBirth)}</td>}
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </section>
+                </>
+            }
+
+            {!isAuth &&
+                <>
+                <p className="p-no-auth">U bent niet (langer) ingelogd. </p>
+                <p className="p-no-auth"><Link to="/login">Klik hier om naar de inlogpagina te gaan</Link></p>
                 </>
             }
 

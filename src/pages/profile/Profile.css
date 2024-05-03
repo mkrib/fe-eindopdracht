@@ -2,19 +2,19 @@
     background-color: var(--lightbeige);
     border: 1px solid var(--darkbrown);
     border-radius: 5px;
-    height: 160px;
-    width: 160px;
     position: fixed;
     top: 110px;
     left: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20px 10px;
+    padding: 10px;
+    max-width: 160px;
 }
 
-.profile-side-nav-guest {
-    width: 180px;
+.p-username {
+    border-bottom: 2px solid var(--orangebrown);
+    text-align: center;
 }
 
 .profile-side-nav ul {
@@ -24,14 +24,15 @@
     gap: 4px;
 }
 
-.profile-side-nav a {
+.profile-side-nav a, .profile-side-nav li {
     text-decoration: none;
     color: var(--darkbrown);
     font-weight: 500;
 }
 
-.profile-side-nav a:hover {
+.profile-side-nav a:hover, .li-logout:hover {
     color: var(--orangebrown);
+    cursor: pointer;
 }
 
 .profile-content {
@@ -108,6 +109,17 @@
 
 table th {
     padding: 4px 30px;
+}
+
+.p-no-auth {
+    text-align: center;
+    margin: 20px 10px 0 10px;
+}
+
+.p-no-auth a {
+    color: var(--darkbrown);
+    border-bottom: 1px solid var(--darkbrown);
+    font-weight: 500;
 }
 
 
